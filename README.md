@@ -60,8 +60,18 @@ This is it! Here is our final Project!
 ### Timeline
 
 #### Milestone 1 (due 11/13)
- 
+Basic skybox shader - Jinxiang Wang
+Basic sand terrain and shader - Jichu Mao
+Basic cliff - Zhiyi Zhou
 
 #### Milestone 2 (due 11/25)
+Sky details and cloud - Jinxiang Wang
+Foliage - Jinxiang Wang
+Sand interaction - Jichu Mao
+Weather system - Jichu Mao
+Sea shader - Zhiyi Zhou
 
 #### Milestone 3 (due 12/2)
+Post process - Jinxiang Wang
+Sand sea interaction and shader effect polish - Jichu Mao
+Scene props - Zhiyi Zhou
