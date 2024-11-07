@@ -45,10 +45,19 @@ This is it! Here is our final Project!
 - Most of the similar effect is done with blender. So we will probably draw some inspiration from blender tutorials
 - References:
    - [Tutorial: Anime style clouds and starry nightsky in blender](https://www.youtube.com/watch?v=m4aOZm6auxQ)
-   -
+   - [Sunset Cliffs | Free Assets Only | Environment Design | Speed Level Design | Unity | HDRP](https://www.youtube.com/watch?v=Ad0okjU-SBA)
+   - [wave animation anime npr -blender](https://www.youtube.com/watch?v=cqZh4Nvum6A)
+
 
 
 ### Design
-
+![](./img/graph.jpg) 
 
 ### Timeline
+
+#### Milestone 1 (due 11/13)
+ 
+
+#### Milestone 2 (due 11/25)
+
+#### Milestone 3 (due 12/2)
