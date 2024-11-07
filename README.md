@@ -26,6 +26,10 @@ This is it! Here is our final Project!
 |:--:|:--:|:--:|
 |<img src="./img/ref2.jpeg" width=500> |<img src="./img/ref3.jpeg" width=400> |<img src="./img/ref4.jpeg" width=450> |
 
+| Ori and the Blind Forest（Daytime）|Ori and the Blind Forest（Evening）|
+|:--:|:--:|
+|<img src="./img/ref5.jpeg" width=400> |<img src="./img/ref6.jpeg" width=400> |
+
 
 ### Main Features
 - Procedural generated terrain and foliage and corresponding textures.
