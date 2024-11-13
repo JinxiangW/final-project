@@ -75,3 +75,18 @@ This is it! Here is our final Project!
 - Post process - Jinxiang Wang
 - Sand sea interaction and shader effect polish - Jichu Mao
 - Scene props - Zhiyi Zhou
+
+### Milestone 1
+
+#### Jichu Mao
+| Sand Shader with Procedural Texture|
+|:--:|
+|<img src="./img/m1.jpeg" width=300> |
+|<img src="./img/m1_2.jpeg" width=300> |
+
+In the milestone 1, I implemented a height map based on Perlin noise and Voronoi noise, along with procedural textures, then combined them into a Sand Shader. I added many adjustable parameters in the shader, allowing users to customize various attributes, such as colors of different sections, texture density and orientation, overall smoothness, highlight color, and more. With these extensive options, users can create their desired artistic effect.
+
+| Sand Shader with Detailed Parameters Control|
+|:--:|
+|<img src="./img/m1_3.jpeg" width=500> |
+|<img src="./img/m1_4.jpg" width=500> |
