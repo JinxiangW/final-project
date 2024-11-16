@@ -113,7 +113,7 @@ Material:
     - _GrainPeriod: 208.97
     - _GrainShineStrength: 0.5
     - _Metallic: 0
-    - _NormalStrength: 70
+    - _NormalStrength: 200
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _PolygonSides: 5.98
@@ -141,11 +141,11 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SandHighColor: {r: 0.9716981, g: 0.9496034, b: 0.68446654, a: 0}
-    - _SandLowColor: {r: 0.8018868, g: 0.67156947, b: 0.38329175, a: 0}
-    - _ShineColor: {r: 0.990566, g: 0.9822594, b: 0.7912068, a: 0}
+    - _SandHighColor: {r: 0.62940544, g: 0.7996996, b: 0.9056604, a: 0}
+    - _SandLowColor: {r: 0.3498279, g: 0.5807576, b: 0.6320754, a: 0}
+    - _ShineColor: {r: 0.7921569, g: 0.99215686, b: 0.84814996, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Substratecolor: {r: 0.46226418, g: 0.21862239, b: 0.11629284, a: 0}
+    - _Substratecolor: {r: 0.24181198, g: 0.4536665, b: 0.5377358, a: 0}
     - _UVTiling: {r: 0.4, g: 5.6, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &5815367263948548880
