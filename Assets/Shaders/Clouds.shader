@@ -1,58 +1,89 @@
-Shader "Unlit/Clouds"
+// This Unity shader reconstructs the world space positions for pixels using a depth
+// texture and screen space UV coordinates. The shader draws a checkerboard pattern
+// on a mesh to visualize the positions.
+Shader "Custom/Clouds"
 {
     Properties
-    {
-        _MainTex ("Texture", 2D) = "white" {}
+    { 
+        _CloudTex("Cloud Texture", 2D) = "white" {}
+        _Ramp("Ramp", 2D) = "white" {}
     }
+
+    // The SubShader block containing the Shader code.
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
-        LOD 100
+        // SubShader Tags define when and under which conditions a SubShader block or
+        // a pass is executed.
+        Tags { "RenderType" = "Trasparent" "RenderPipeline" = "UniversalPipeline" "Queue"="Transparent+1"}
+        Blend SrcAlpha OneMinusSrcAlpha
+        ZWrite Off
+        Cull Off
 
+        HLSLINCLUDE
+        #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+        #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareDepthTexture.hlsl"
+        #include "Assets/Shaders/Common.hlsl"
+
+        CBUFFER_START(UnityPerMaterial)
+
+
+        CBUFFER_END
+
+        TEXTURE2D(_CloudTex);
+        SAMPLER(sampler_CloudTex);
+        TEXTURE2D(_Ramp);
+        SAMPLER(sampler_Ramp);
+
+        ENDHLSL
         Pass
         {
-            CGPROGRAM
+            HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            // make fog work
-            #pragma multi_compile_fog
+            
 
-            #include "UnityCG.cginc"
-
-            struct appdata
+            struct Attributes
             {
-                float4 vertex : POSITION;
+                float4 positionOS   : POSITION;
                 float2 uv : TEXCOORD0;
             };
 
-            struct v2f
+            struct Varyings
             {
-                float2 uv : TEXCOORD0;
-                UNITY_FOG_COORDS(1)
-                float4 vertex : SV_POSITION;
+                float4 positionHCS  : SV_POSITION;
+                float3 positionWS : TEXCOORD0;
+                float2 uv : TEXCOORD1;
+                float3 obj : TEXCOORD2;
             };
 
-            sampler2D _MainTex;
-            float4 _MainTex_ST;
-
-            v2f vert (appdata v)
+            Varyings vert(Attributes IN)
             {
-                v2f o;
-                o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                UNITY_TRANSFER_FOG(o,o.vertex);
-                return o;
+                Varyings OUT;
+                OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz);
+                OUT.positionWS = TransformObjectToWorld(IN.positionOS.xyz);
+                OUT.uv = IN.uv;
+                OUT.obj = IN.positionOS.xyz;
+                return OUT;
             }
 
-            fixed4 frag (v2f i) : SV_Target
+            half4 frag(Varyings IN) : SV_Target
             {
-                // sample the texture
-                fixed4 col = tex2D(_MainTex, i.uv);
-                // apply fog
-                UNITY_APPLY_FOG(i.fogCoord, col);
-                return col;
+                // screen uv
+                float2 UV = IN.positionHCS.xy / _ScaledScreenParams.xy;
+                float4 cloudSample = SAMPLE_TEXTURE2D(_CloudTex, sampler_CloudTex, IN.uv);
+                
+                if (cloudSample.a < 0.1)
+                {
+                    discard;
+                }
+
+                // cloud color
+                float2 colorUV = float2(cloudSample.x, 0.0);
+                float4 color = SAMPLE_TEXTURE2D(_Ramp, sampler_Ramp, colorUV);
+                return half4(color.rgb, cloudSample.a);
+                return 0;
             }
-            ENDCG
+            ENDHLSL
         }
     }
 }
