@@ -1,84 +1,138 @@
-// This Unity shader reconstructs the world space positions for pixels using a depth
-// texture and screen space UV coordinates. The shader draws a checkerboard pattern
-// on a mesh to visualize the positions.
 Shader "Custom/Clouds"
 {
     Properties
-    { 
-        _CloudTex("Cloud Texture", 2D) = "white" {}
-        _Ramp("Ramp", 2D) = "white" {}
+    {
+        [MainTexture] _BaseMap("Albedo", 2D) = "white" {}
+        _Ramp("Color Ramp", 2D) = "white" {}
+        [HideInInspector][MainColor] _BaseColor("Color", Color) = (1,1,1,1)
     }
 
-    // The SubShader block containing the Shader code.
     SubShader
     {
-        // SubShader Tags define when and under which conditions a SubShader block or
-        // a pass is executed.
-        Tags { "RenderType" = "Trasparent" "RenderPipeline" = "UniversalPipeline" "Queue"="Transparent+1"}
-        Blend SrcAlpha OneMinusSrcAlpha
-        Cull Off
+		PackageRequirements {
+			"org.happy-turtle.order-independent-transparency"
+			"com.unity.render-pipelines.universal"
+		}
+
+        // Universal Pipeline tag is required. If Universal render pipeline is not set in the graphics settings
+        // this Subshader will fail. One can add a subshader below or fallback to Standard built-in to make this
+        // material work with both Universal Render Pipeline and Builtin Unity Pipeline
+        Tags
+        {
+            "RenderType" = "Opaque"
+            "RenderPipeline" = "UniversalPipeline"
+            "UniversalMaterialType" = "Lit"
+            "IgnoreProjector" = "True"
+            "Queue" = "Geometry+1"
+        }
+        LOD 300
 
         HLSLINCLUDE
         #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
         #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareDepthTexture.hlsl"
         #include "Assets/Shaders/Common.hlsl"
-
+        #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
+        #include "Packages/org.happy-turtle.order-independent-transparency/URP/Shaders/OitLitForwardPassURP.hlsl"
         CBUFFER_START(UnityPerMaterial)
 
 
         CBUFFER_END
 
-        TEXTURE2D(_CloudTex);
-        SAMPLER(sampler_CloudTex);
         TEXTURE2D(_Ramp);
         SAMPLER(sampler_Ramp);
 
-        struct Attributes
+        [earlydepthstencil]
+        // Used in Standard (Physically Based) shader
+        void frag(
+            Varyings input
+            , out half4 outColor : SV_Target0
+        #ifdef _WRITE_RENDERING_LAYERS
+            , out float4 outRenderingLayers : SV_Target1
+        #endif
+            , uint uSampleIdx : SV_SampleIndex
+        )
         {
-            float4 positionOS   : POSITION;
-            float2 uv : TEXCOORD0;
-        };
+            UNITY_SETUP_INSTANCE_ID(input);
+            UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
 
-        struct Varyings
-        {
-            float4 positionHCS  : SV_POSITION;
-            float3 positionWS : TEXCOORD0;
-            float2 uv : TEXCOORD1;
-            float3 obj : TEXCOORD2;
-        };
+        #if defined(_PARALLAXMAP)
+        #if defined(REQUIRES_TANGENT_SPACE_VIEW_DIR_INTERPOLATOR)
+            half3 viewDirTS = input.viewDirTS;
+        #else
+            half3 viewDirWS = GetWorldSpaceNormalizeViewDir(input.positionWS);
+            half3 viewDirTS = GetViewDirectionTangentSpace(input.tangentWS, input.normalWS, viewDirWS);
+        #endif
+            ApplyPerPixelDisplacement(viewDirTS, input.uv);
+        #endif
 
-        Varyings vert(Attributes IN)
-        {
-            Varyings OUT;
-            OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz);
-            OUT.positionWS = TransformObjectToWorld(IN.positionOS.xyz);
-            OUT.uv = IN.uv;
-            OUT.obj = IN.positionOS.xyz;
-            return OUT;
-        }
+            SurfaceData surfaceData;
+            InitializeStandardLitSurfaceData(input.uv, surfaceData);
 
-        half4 frag(Varyings IN) : SV_Target
-        {
+        #ifdef LOD_FADE_CROSSFADE
+            LODFadeCrossFade(input.positionCS);
+        #endif
+
+            InputData inputData;
+            InitializeInputData(input, surfaceData.normalTS, inputData);
+            SETUP_DEBUG_TEXTURE_DATA(inputData, input.uv, _BaseMap);
+
+        #ifdef _DBUFFER
+            ApplyDecalToSurfaceData(input.positionCS, surfaceData, inputData);
+        #endif
+
             // screen uv
-            float2 UV = IN.positionHCS.xy / _ScaledScreenParams.xy;
-            float4 cloudSample = SAMPLE_TEXTURE2D(_CloudTex, sampler_CloudTex, IN.uv);
+            float2 UV = input.positionCS.xy / _ScaledScreenParams.xy;
+            float4 cloudSample = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, input.uv);
 
             // cloud color
             float2 colorUV = float2(cloudSample.x, 0.0);
             float4 color = SAMPLE_TEXTURE2D(_Ramp, sampler_Ramp, colorUV);
-            return half4(color.rgb, cloudSample.a);
-            return 0;
+            color.a = cloudSample.a;
+            createFragmentEntry(color, input.positionCS.xyz, uSampleIdx);
+            outColor = color.a;
+            
+
+        #ifdef _WRITE_RENDERING_LAYERS
+            uint renderingLayers = GetMeshRenderingLayer();
+            outRenderingLayers = float4(EncodeMeshRenderingLayer(renderingLayers), 0, 0, 0);
+        #endif
         }
+
+
+ 
+
+        
 
         ENDHLSL
 
+
+        // ------------------------------------------------------------------
+        //  Forward pass. Shades all light in a single pass. GI + emission + Fog
         Pass
         {
-            Name "cloud"
+            // Lightmode matches the ShaderPassName set in UniversalRenderPipeline.cs. SRPDefaultUnlit and passes with
+            // no LightMode tag are also rendered by Universal Render Pipeline
+            Name "ForwardLit"
+            Tags
+            {
+                "LightMode" = "UniversalForward"
+            }
+
+			ZTest LEqual
+			ZWrite Off
+			Cull Off
+
             HLSLPROGRAM
-            #pragma vertex vert
+			#pragma target 4.5
+
+            #pragma vertex LitPassVertex
             #pragma fragment frag
+
+            
             ENDHLSL
         }
+
     }
+
+    FallBack "OrderIndependentTransparency/Unlit"
 }
