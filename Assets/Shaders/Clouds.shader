@@ -16,7 +16,6 @@ Shader "Custom/Clouds"
         // a pass is executed.
         Tags { "RenderType" = "Trasparent" "RenderPipeline" = "UniversalPipeline" "Queue"="Transparent+1"}
         Blend SrcAlpha OneMinusSrcAlpha
-        ZWrite Off
         Cull Off
 
         HLSLINCLUDE
@@ -34,55 +33,51 @@ Shader "Custom/Clouds"
         TEXTURE2D(_Ramp);
         SAMPLER(sampler_Ramp);
 
+        struct Attributes
+        {
+            float4 positionOS   : POSITION;
+            float2 uv : TEXCOORD0;
+        };
+
+        struct Varyings
+        {
+            float4 positionHCS  : SV_POSITION;
+            float3 positionWS : TEXCOORD0;
+            float2 uv : TEXCOORD1;
+            float3 obj : TEXCOORD2;
+        };
+
+        Varyings vert(Attributes IN)
+        {
+            Varyings OUT;
+            OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz);
+            OUT.positionWS = TransformObjectToWorld(IN.positionOS.xyz);
+            OUT.uv = IN.uv;
+            OUT.obj = IN.positionOS.xyz;
+            return OUT;
+        }
+
+        half4 frag(Varyings IN) : SV_Target
+        {
+            // screen uv
+            float2 UV = IN.positionHCS.xy / _ScaledScreenParams.xy;
+            float4 cloudSample = SAMPLE_TEXTURE2D(_CloudTex, sampler_CloudTex, IN.uv);
+
+            // cloud color
+            float2 colorUV = float2(cloudSample.x, 0.0);
+            float4 color = SAMPLE_TEXTURE2D(_Ramp, sampler_Ramp, colorUV);
+            return half4(color.rgb, cloudSample.a);
+            return 0;
+        }
+
         ENDHLSL
+
         Pass
         {
+            Name "cloud"
             HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            
-
-            struct Attributes
-            {
-                float4 positionOS   : POSITION;
-                float2 uv : TEXCOORD0;
-            };
-
-            struct Varyings
-            {
-                float4 positionHCS  : SV_POSITION;
-                float3 positionWS : TEXCOORD0;
-                float2 uv : TEXCOORD1;
-                float3 obj : TEXCOORD2;
-            };
-
-            Varyings vert(Attributes IN)
-            {
-                Varyings OUT;
-                OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz);
-                OUT.positionWS = TransformObjectToWorld(IN.positionOS.xyz);
-                OUT.uv = IN.uv;
-                OUT.obj = IN.positionOS.xyz;
-                return OUT;
-            }
-
-            half4 frag(Varyings IN) : SV_Target
-            {
-                // screen uv
-                float2 UV = IN.positionHCS.xy / _ScaledScreenParams.xy;
-                float4 cloudSample = SAMPLE_TEXTURE2D(_CloudTex, sampler_CloudTex, IN.uv);
-                
-                if (cloudSample.a < 0.1)
-                {
-                    discard;
-                }
-
-                // cloud color
-                float2 colorUV = float2(cloudSample.x, 0.0);
-                float4 color = SAMPLE_TEXTURE2D(_Ramp, sampler_Ramp, colorUV);
-                return half4(color.rgb, cloudSample.a);
-                return 0;
-            }
             ENDHLSL
         }
     }

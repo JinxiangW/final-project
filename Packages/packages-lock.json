@@ -153,6 +153,13 @@
       },
       "url": "https://packages.unity.com"
     },
+    "org.happy-turtle.order-independent-transparency": {
+      "version": "https://github.com/happy-turtle/oit-unity.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "6ffb08fa39e62e2897dad832e3f9173f9e255128"
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
