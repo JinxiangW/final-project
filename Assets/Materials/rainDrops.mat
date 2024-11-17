@@ -48,19 +48,19 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaCutoff: 0.5
-    - _Brightness: 1.2
+    - _Brightness: 13.57
     - _EnvironmentReflections: 1
     - _Float0: 2.5
     - _Float1: 2.5
     - _Opacity: 0.7
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RainSpeed: 1
-    - _RainTiling: 2.5
+    - _RainSpeed: 1.6
+    - _RainTiling: 3.19
     - _ReceiveShadows: 0
     - _ScaleFactor: 0.9
     - _SpecularHighlights: 1
-    - _WindSpeed: 0.17
+    - _WindSpeed: 0.36
     - __dirty: 0
     m_Colors:
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}

@@ -90,3 +90,9 @@ In the milestone 1, I implemented a height map based on Perlin noise and Voronoi
 |:--:|
 |<img src="./img/m1_3.jpeg" width=500> |
 |<img src="./img/m1_4.jpg" width=500> |
+
+
+## References
+- [Creating a Sand Shader](https://www.youtube.com/watch?v=KqWfo6EPjCw&t=947s)
+- [Unity | Raindrops Shader](https://www.youtube.com/watch?v=dQSLjsDAzw0)
+- [Making a rainy winodw in Unity](https://www.youtube.com/watch?v=EBrAdahFtuo)
