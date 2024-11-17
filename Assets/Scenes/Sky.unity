@@ -26,19 +26,19 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 7494d1020b1dc9e4da226bc8c9edc032, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
-  m_DefaultReflectionResolution: 128
+  m_DefaultReflectionResolution: 256
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.0010684498, g: 0.017980346, b: 0.034784757, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,112 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &842619527
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 842619531}
-  - component: {fileID: 842619530}
-  - component: {fileID: 842619529}
-  - component: {fileID: 842619528}
-  m_Layer: 0
-  m_Name: plane
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!64 &842619528
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 842619527}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &842619529
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 842619527}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &842619530
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 842619527}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &842619531
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 842619527}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -127.15175, y: 179.95358, z: 46.301773}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1128816771
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,8 +209,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1128816771}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.034324836, y: -0.89087105, z: 0.06918259, w: 0.4476431}
-  m_LocalPosition: {x: -122.43609, y: 183.93044, z: 52.326237}
+  m_LocalRotation: {x: -0.064485006, y: -0.0981918, z: 0.0059838053, w: -0.9930581}
+  m_LocalPosition: {x: -127.5798, y: 182.62468, z: 46.087597}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -495,32 +389,32 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 940d55150b2ec604aa4ab03a0ccfc973,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 5.0481
+      value: 14.384869
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 940d55150b2ec604aa4ab03a0ccfc973,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 5.0481
+      value: 14.384869
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 940d55150b2ec604aa4ab03a0ccfc973,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 5.0481
+      value: 14.384869
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 940d55150b2ec604aa4ab03a0ccfc973,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -127.73
+      value: -128.35
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 940d55150b2ec604aa4ab03a0ccfc973,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 171.16
+      value: 152.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 940d55150b2ec604aa4ab03a0ccfc973,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 45.501
+      value: 42.409
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 940d55150b2ec604aa4ab03a0ccfc973,
         type: 3}
@@ -603,5 +497,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 1128816774}
   - {fileID: 1584526002}
-  - {fileID: 842619531}
   - {fileID: 1811662770}
