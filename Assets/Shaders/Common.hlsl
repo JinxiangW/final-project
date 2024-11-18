@@ -4,6 +4,8 @@
 #define PI_TWO 6.28318530718
 // #define INV_PI 0.31830988618
 
+#define POW5(x) ((x) * (x) * (x) * (x) * (x))
+
 float cubic(float a) {
     return a * a * (3.0 - 2.0 * a);
 }
@@ -289,4 +291,9 @@ float3x3 randomRototationMatrix(float seed)
     float3 bitangent = normalize(cross(forward, tangent));
     tangent = cross(bitangent, forward);
     return float3x3(tangent, bitangent, forward);
+}
+
+float triWave(float t, float freq, float amp)
+{
+    return abs(2.0 * frac(t * freq) - 1.0) * amp;
 }

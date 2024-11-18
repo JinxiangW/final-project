@@ -7,7 +7,9 @@ Shader "Custom/Caustics"
     { 
         _MainTex("Skybox", CUBE) = "" {}
         _StarTex("Starfield", CUBE) = "" {}
-        
+        _SunTex("Sun", 2D) = "" {}
+        _MoonTex("Moon", 2D) = "" {}
+        _MoonRadius("Moon Radius", Range(0.1, 0.5)) = 0.2
     }
 
     // The SubShader block containing the Shader code.
@@ -23,13 +25,24 @@ Shader "Custom/Caustics"
             #pragma fragment frag
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareDepthTexture.hlsl"
-
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+            #include "Assets/Shaders/Common.hlsl"
 
             TEXTURECUBE(_MainTex);
             SAMPLER(sampler_MainTex);
             TEXTURECUBE(_StarTex);
             SAMPLER(sampler_StarTex);
             
+            TEXTURE2D(_SunTex);
+            SAMPLER(sampler_SunTex);
+            TEXTURE2D(_MoonTex);
+            SAMPLER(sampler_MoonTex);
+
+            CBUFFER_START(UnityPerMaterial)
+            float _MoonRadius;
+            CBUFFER_END
+
+
             struct Attributes
             {
                 float4 positionOS   : POSITION;
@@ -56,15 +69,30 @@ Shader "Custom/Caustics"
 
             half4 frag(Varyings IN) : SV_Target
             {
-                // 定义采样方向。通常是从某个世界空间方向来采样cubemap
-                float3 sampleDirection = normalize(IN.positionWS); // 使用世界空间位置作为采样方向
+                // screen UV
+                float2 UV = IN.positionHCS.xy / _ScaledScreenParams.y;
 
-                // 采样天空盒纹理
+                float3 camPos = _WorldSpaceCameraPos;
+                float3 sampleDirection = normalize(IN.positionWS);
+
                 half4 skyboxColor = SAMPLE_TEXTURECUBE(_MainTex, sampler_MainTex, sampleDirection);
                 half4 starfieldColor = SAMPLE_TEXTURECUBE(_StarTex, sampler_StarTex, sampleDirection);
 
-                // 组合结果，简单相加
-                return skyboxColor + starfieldColor;
+                // main light
+                Light light = GetMainLight();
+                float3 sunDir = light.direction;
+                float3 moonDir = -sunDir;
+
+                // moon color
+                float4 moonClipPos = mul(UNITY_MATRIX_VP, float4(moonDir, 0));
+                moonClipPos /= moonClipPos.w;
+                moonClipPos.y = -moonClipPos.y;
+                float2 moonUV = 0.5 * moonClipPos.xy + 0.5;
+                moonUV.x *= _ScreenParams.x / _ScreenParams.y;
+
+                half4 moonColor = max(abs(UV - moonUV).x, abs(UV - moonUV).y) < _MoonRadius ? SAMPLE_TEXTURE2D(_MoonTex, sampler_MoonTex, (moonUV - UV) / _MoonRadius + 0.5) : 0;
+                moonColor.rgb *= moonColor.a;
+                return skyboxColor + starfieldColor + moonColor;
             }
             ENDHLSL
         }

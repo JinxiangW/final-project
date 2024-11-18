@@ -4,6 +4,7 @@ Shader "Custom/Clouds"
     {
         [MainTexture] _BaseMap("Albedo", 2D) = "white" {}
         _Ramp("Color Ramp", 2D) = "white" {}
+        _RimColor("Rim Color", Color) = (1,1,1,1)
         [HideInInspector][MainColor] _BaseColor("Color", Color) = (1,1,1,1)
     }
 
@@ -33,13 +34,18 @@ Shader "Custom/Clouds"
         #include "Assets/Shaders/Common.hlsl"
         #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
         #include "Packages/org.happy-turtle.order-independent-transparency/URP/Shaders/OitLitForwardPassURP.hlsl"
-        CBUFFER_START(UnityPerMaterial)
+        #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 
+        CBUFFER_START(UnityPerMaterial)
+        float4 _RimColor;
 
         CBUFFER_END
 
         TEXTURE2D(_Ramp);
         SAMPLER(sampler_Ramp);
+
+        #define spl _Bilinear_Clamp
+        SAMPLER(spl);
 
         [earlydepthstencil]
         // Used in Standard (Physically Based) shader
@@ -82,15 +88,27 @@ Shader "Custom/Clouds"
 
             // screen uv
             float2 UV = input.positionCS.xy / _ScaledScreenParams.xy;
-            float4 cloudSample = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, input.uv);
+            float4 cloudSample = SAMPLE_TEXTURE2D(_BaseMap, spl, input.uv);
 
             // cloud color
             float2 colorUV = float2(cloudSample.x, 0.0);
             float4 color = SAMPLE_TEXTURE2D(_Ramp, sampler_Ramp, colorUV);
-            color.a = cloudSample.a;
+
+            // cloud rim
+            Light light = GetMainLight();
+            float3 camPos = _WorldSpaceCameraPos;
+            float3 viewDir = normalize(camPos - input.positionWS);
+            float HdotV = dot(normalize(-light.direction + viewDir), viewDir);
+            float3 rimColor = _RimColor.xyz * POW5(1 - saturate(HdotV)) * cloudSample.g;
+
+            // cloud sdf
+            float sdfThres = triWave(perlin3D(mul(unity_WorldToObject, input.positionWS).xyz * 10.0) + _Time.x, 0.5, 0.5);
+            color.a = smoothstep(0.0, 0.1, cloudSample.b - sdfThres) * cloudSample.a;
+
+            color = color + float4(rimColor, 0.0);
+            // create fragment entry - fixed pipeline, don't modify
             createFragmentEntry(color, input.positionCS.xyz, uSampleIdx);
-            outColor = color.a;
-            
+            outColor = color;            
 
         #ifdef _WRITE_RENDERING_LAYERS
             uint renderingLayers = GetMeshRenderingLayer();

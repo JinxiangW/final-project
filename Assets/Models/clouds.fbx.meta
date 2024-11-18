@@ -12,6 +12,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: cloud2
+    second: {fileID: 2100000, guid: a53bdadd3017a8e4f96f7cfe31b084ed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: cloud2.001
     second: {fileID: 2100000, guid: a53bdadd3017a8e4f96f7cfe31b084ed, type: 2}
   materials:
