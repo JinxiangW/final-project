@@ -86,7 +86,7 @@ float fbmPerlin(float2 p, float freq, float amp, int octaves)
 float fbmPerlin3D(float3 p, float freq, float amp, int octaves)
 {
     float v = 0.0;
-    float a = 1.0;
+    float a = amp;
     float f = freq;
     for(int i = 0; i < octaves; i++)
     {

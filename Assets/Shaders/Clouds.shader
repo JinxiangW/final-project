@@ -5,6 +5,10 @@ Shader "Custom/Clouds"
         [MainTexture] _BaseMap("Albedo", 2D) = "white" {}
         _Ramp("Color Ramp", 2D) = "white" {}
         _RimColor("Rim Color", Color) = (1,1,1,1)
+        _EdgeShape("Edge Shape", Range(0.01, 2.0)) = 0.5
+        _EdgeFrequency("Edge Frequency", Range(0.1, 2.0)) = 0.1
+        _EdgeAmp("Edge Amplitude", Range(0.0, 1)) = 0.5
+        _EdgeSpeed("Edge Speed", Range(0.1, 1)) = 0.2
         [HideInInspector][MainColor] _BaseColor("Color", Color) = (1,1,1,1)
     }
 
@@ -26,7 +30,7 @@ Shader "Custom/Clouds"
             "IgnoreProjector" = "True"
             "Queue" = "Geometry+1"
         }
-        LOD 300
+        // LOD 300
 
         HLSLINCLUDE
         #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
@@ -38,7 +42,10 @@ Shader "Custom/Clouds"
 
         CBUFFER_START(UnityPerMaterial)
         float4 _RimColor;
-
+        float _EdgeShape;
+        float _EdgeFrequency;
+        float _EdgeAmp;
+        float _EdgeSpeed;
         CBUFFER_END
 
         TEXTURE2D(_Ramp);
@@ -102,10 +109,13 @@ Shader "Custom/Clouds"
             float3 rimColor = _RimColor.xyz * POW5(1 - saturate(HdotV)) * cloudSample.g;
 
             // cloud sdf
-            float sdfThres = triWave(perlin3D(mul(unity_WorldToObject, input.positionWS).xyz * 10.0) + _Time.x, 0.5, 0.5);
-            color.a = smoothstep(0.0, 0.1, cloudSample.b - sdfThres) * cloudSample.a;
+            float sdfThres = triWave(fbmPerlin3D(input.positionWS.xyz, _EdgeFrequency, _EdgeAmp, 3) + _Time.x, _EdgeSpeed, 0.8);
+            sdfThres = smoothstep(0.00, _EdgeShape, sdfThres);
+            // color.a = cloudSample.a * smoothstep(0.0, sdfThres, cloudSample.b);
+            color.a = cloudSample.a * step(sdfThres, cloudSample.b);
 
             color = color + float4(rimColor, 0.0);
+            // color = cloudSample.b * cloudSample.a;
             // create fragment entry - fixed pipeline, don't modify
             createFragmentEntry(color, input.positionCS.xyz, uSampleIdx);
             outColor = color;            
