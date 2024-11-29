@@ -111,7 +111,7 @@ Material:
     - _GlossyReflections: 0
     - _GrainColorBlend: 0.387
     - _GrainPeriod: 208.97
-    - _GrainShineStrength: 0.5
+    - _GrainShineStrength: 0.37
     - _Metallic: 0
     - _NormalStrength: 200
     - _OcclusionStrength: 1
@@ -120,8 +120,8 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _ShineDuneHeightMin: 0.57
-    - _ShineThreshold: 0.8
+    - _ShineDuneHeightMin: 0.34
+    - _ShineThreshold: 0.65
     - _SineAmplitude: 0.21
     - _SineFrequency: 4.98
     - _SineRotation: 10.14
@@ -132,7 +132,7 @@ Material:
     - _SrcBlendAlpha: 1
     - _SubstrateDuneHeightMax: 0.167
     - _SubstrateGrainHeightMax: 0.285
-    - _SubstrateTightening: 1.7
+    - _SubstrateTightening: 1.52
     - _Surface: 0
     - _UVScale: 2
     - _WorkflowMode: 1
