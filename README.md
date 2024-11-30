@@ -67,13 +67,14 @@ This is it! Here is our final Project!
 #### Milestone 2 (due 11/25)
 - Sky details and cloud - Jinxiang Wang
 - Foliage - Jinxiang Wang
-- Sand interaction - Jichu Mao
+- Rain Effect - Jichu Mao
 - Weather system - Jichu Mao
 - Sea shader - Zhiyi Zhou
 
 #### Milestone 3 (due 12/2)
 - Post process - Jinxiang Wang
-- Sand sea interaction and shader effect polish - Jichu Mao
+- Final scene integration and setup  - Jichu Mao
+- Shader effect polish - Jichu Mao
 - Scene props - Zhiyi Zhou
 
 ### Milestone 1
@@ -90,6 +91,27 @@ In the milestone 1, I implemented a height map based on Perlin noise and Voronoi
 |:--:|
 |<img src="./img/m1_3.jpeg" width=500> |
 |<img src="./img/m1_4.jpg" width=500> |
+
+
+### Milestone 2
+
+#### Jichu Mao
+- Implementation of a rain effect shader
+
+- Implementation of a rain-on-window effect shader
+
+- Initial implementation of a weather system
+
+### Milestone 3
+
+#### Jichu Mao
+- Integration of teammates' basic implementations and design, assembly, and setup of the final scene
+
+- Polishing the scene's weather system
+
+- Adding sound effects for weather transitions
+
+
 
 
 ## References
