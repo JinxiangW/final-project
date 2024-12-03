@@ -52,11 +52,11 @@ Material:
     - _EnvironmentReflections: 1
     - _Float0: 2.5
     - _Float1: 2.5
-    - _Opacity: 0.7
+    - _Opacity: 0.278
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RainSpeed: 1.6
-    - _RainTiling: 3.19
+    - _RainTiling: 2.2
     - _ReceiveShadows: 0
     - _ScaleFactor: 0.9
     - _SpecularHighlights: 1

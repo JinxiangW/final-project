@@ -107,17 +107,17 @@ Material:
     m_Ints: []
     m_Floats:
     - Distance: 5.03
-    - FoamAmount: 2.76
+    - FoamAmount: 1.14
     - FoamCuttoff: 2
     - FoamScale: 100
-    - FoamSpeed: 1.78
-    - HightFrequency: 1.54
+    - FoamSpeed: 0.67
+    - HightFrequency: 155.65
     - Metallic: 0
-    - NormalStrength: 0.51
+    - NormalStrength: 0.59
     - RefractionSpeed: 0.075
-    - RefractionStrength: 0.05
+    - RefractionStrength: 0.15
     - Smoothness: 1
-    - WaveSpeed: 3.45
+    - WaveSpeed: 1.61
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -143,20 +143,22 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
+    - _WaveFrequency: 169.97
     - _WorkflowMode: 1
     - _ZWrite: 1
     - reflectionStrength: 1.1
-    - waveamplitude: 0.05
+    - waveamplitude: 0.07
     m_Colors:
-    - DeepColor: {r: 0.011764706, g: 0.28627384, b: 0.5098025, a: 0.5882353}
+    - DeepColor: {r: 0.16694872, g: 0.2376564, b: 0.383, a: 0.57254905}
     - FoamColor: {r: 1, g: 1, b: 1, a: 1}
     - FoamTiling: {r: 10, g: 10, b: 0, a: 0}
-    - RefractionScale: {r: 3, g: 10, b: 0, a: 0}
-    - SurfaceColor: {r: 0, g: 0.77254903, b: 0.6642033, a: 0.61960787}
+    - RefractionScale: {r: 3, g: 3, b: 0, a: 0}
+    - SurfaceColor: {r: 0.33521715, g: 0.4757921, b: 0.764151, a: 0.7607843}
     - UV: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FoamDir: {r: -1, g: 1, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &9031430383288000545
