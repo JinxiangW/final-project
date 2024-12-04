@@ -1,0 +1,30 @@
+fileFormatVersion: 2
+guid: 950efecc6bef2754f8e003f577686c78
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Fronkon Games
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: ddadd5d6a3b0ac64986eae00a381d1fc, type: 3}
+  - {fileID: 12800000, guid: d7b9a4549908d0a4093567e8910d9840, type: 3}
+  - {fileID: 12800000, guid: 0dff1f3c2deb88540876d96d42e9b330, type: 3}
+  - {fileID: 12800000, guid: d90a255fae31b2345ace064ae9ce13d7, type: 3}
+  - {fileID: 12800000, guid: abe3826605d853c44bb78588846f53a9, type: 3}
+  - {fileID: 12800000, guid: a0e3416d4085d4840a27cee05ad6b5b2, type: 3}
+  - {fileID: 12800000, guid: 9244708a13ccf9941b2b6d9f365bae12, type: 3}
+  - {fileID: 12800000, guid: 9d787be01e5d9a94e9a61b303d68f8f3, type: 3}
+  - {fileID: 12800000, guid: b6514af30c1a10b4b99dc5aed0dae840, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -109,12 +109,13 @@ Shader "Custom/Clouds"
             float3 rimColor = _RimColor.xyz * POW5(1 - saturate(HdotV)) * cloudSample.g;
 
             // cloud sdf
-            float sdfThres = triWave(fbmPerlin3D(input.positionWS.xyz, _EdgeFrequency, _EdgeAmp, 3) + _Time.x, _EdgeSpeed, 0.8);
+            float sdfThres = triWave(fbmPerlin3D(input.positionWS.xyz * 0.014, _EdgeFrequency, _EdgeAmp, 3) + _Time.x, _EdgeSpeed, 0.8);
             sdfThres = smoothstep(0.00, _EdgeShape, sdfThres);
             // color.a = cloudSample.a * smoothstep(0.0, sdfThres, cloudSample.b);
             color.a = cloudSample.a * step(sdfThres, cloudSample.b);
 
             color = color + float4(rimColor, 0.0);
+            // color.xyz = fbmPerlin3D(input.positionWS.xyz * 0.014, _EdgeFrequency, _EdgeAmp, 3);
             // color = cloudSample.b * cloudSample.a;
             // create fragment entry - fixed pipeline, don't modify
             createFragmentEntry(color, input.positionCS.xyz, uSampleIdx);

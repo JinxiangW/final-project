@@ -109,11 +109,11 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _GrainColorBlend: 0.76
-    - _GrainPeriod: 188.45
-    - _GrainShineStrength: 0.39
+    - _GrainColorBlend: 0.582
+    - _GrainPeriod: 1957.12
+    - _GrainShineStrength: 0.7
     - _Metallic: 0
-    - _NormalStrength: 200
+    - _NormalStrength: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _PolygonSides: 6.65
@@ -121,20 +121,20 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _ShineDuneHeightMin: 0.53
-    - _ShineThreshold: 0.14
+    - _ShineThreshold: 0.31
     - _SineAmplitude: 0.08
-    - _SineFrequency: 1.15
+    - _SineFrequency: 1.74
     - _SineRotation: 6.45
-    - _Smoothness: 0.09
+    - _Smoothness: 0.08
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _SubstrateDuneHeightMax: 0.67
-    - _SubstrateGrainHeightMax: 0.76
-    - _SubstrateTightening: 1.6
+    - _SubstrateGrainHeightMax: 1.79
+    - _SubstrateTightening: 3.61
     - _Surface: 0
-    - _UVScale: 3.08
+    - _UVScale: 3.22
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:

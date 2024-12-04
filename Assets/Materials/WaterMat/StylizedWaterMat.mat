@@ -109,14 +109,14 @@ Material:
     - Distance: 5.03
     - FoamAmount: 1.14
     - FoamCuttoff: 2
-    - FoamScale: 100
+    - FoamScale: 109.99
     - FoamSpeed: 0.67
     - HightFrequency: 155.65
     - Metallic: 0
     - NormalStrength: 0.59
     - RefractionSpeed: 0.075
     - RefractionStrength: 0.15
-    - Smoothness: 1
+    - Smoothness: 0.628
     - WaveSpeed: 1.61
     - _AlphaClip: 0
     - _Blend: 0

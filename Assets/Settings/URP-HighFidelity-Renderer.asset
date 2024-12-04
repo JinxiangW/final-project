@@ -68,7 +68,8 @@ MonoBehaviour:
   - {fileID: -1878332245247344467}
   - {fileID: -1813630808334500513}
   - {fileID: 3636860629214464169}
-  m_RendererFeatureMap: adc0de57c6d2eee55f7d848b63b0d4e6a988ee2d79b97832
+  - {fileID: 4321963005902985768}
+  m_RendererFeatureMap: adc0de57c6d2eee55f7d848b63b0d4e6a988ee2d79b97832281a3a8374b2fa3b
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -128,3 +129,43 @@ MonoBehaviour:
   injectionPoint: 600
   requirements: 4
   passIndex: 0
+--- !u!114 &4321963005902985768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b76a5db6251bd74fb78ad4c7b95c46c, type: 3}
+  m_Name: Tonemapper
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    intensity: 0.258
+    tonemapperOperator: 0
+    exposure: 3.1
+    colorFilter: {r: 1, g: 1, b: 1, a: 1}
+    vibrance: -0.13
+    vibranceBalance: {x: 1, y: 1, z: 1}
+    contrastMidpoint: 1.19
+    lift: {r: 1, g: 1, b: 1, a: 1}
+    liftBright: 1
+    midtones: {r: 1, g: 1, b: 1, a: 1}
+    midtonesBright: 1
+    gain: {r: 1, g: 1, b: 1, a: 1}
+    gainBright: 1
+    whiteLevel: 1
+    linearWhite: 1.5
+    linearColor: 1.5
+    cutOff: 0.025
+    brightness: 0
+    contrast: 2.57
+    gamma: 1.32
+    hue: 0
+    saturation: 1.13
+    affectSceneView: 0
+    enableProfiling: 0
+    filterMode: 1
+    whenToInsert: 550

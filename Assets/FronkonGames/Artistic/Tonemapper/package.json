@@ -1,0 +1,16 @@
+{
+  "name": "com.fronkongames.artistic.tonemapper",
+  "version": "2.0.0",
+  "displayName": "Artistic: Tonemapper",
+  "description": "Maps wide range colors (HDR) into low dynamic range (LDR) using different algorithms.",
+  "unity": "2022.3",
+  "unityRelease": "45f1",
+  "dependencies":  {  },
+  "keywords": [ "unity", "fps", "vr", "tonemapping", "tonemapper", "HDR", "LDR", "ACES", "Film" ],
+  "author":
+  {
+    "name": "Fronkon Games",
+    "email": "fronkongames@gmail.com",
+    "url": "https://fronkongames.github.io/store/artistic/"
+  }
+}

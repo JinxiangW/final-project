@@ -22,7 +22,7 @@ Shader "Custom/Raindrop" {
 			#define S(a, b, t) smoothstep(a, b, t)
 			//#define CHEAP_NORMALS
 			#define HAS_HEART
-			#define USE_POST_PROCESSING
+			// #define USE_POST_PROCESSING
 
 			float3 N13(float p) {
 				//  from DAVE HOSKINS

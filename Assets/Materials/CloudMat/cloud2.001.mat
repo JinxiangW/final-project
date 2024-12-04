@@ -107,7 +107,7 @@ Material:
     - _EdgeAmp: 0.487
     - _EdgeFrequency: 0.1
     - _EdgeShape: 2
-    - _EdgeSpeed: 0.1
+    - _EdgeSpeed: 0.225
     - _EnvironmentReflections: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
