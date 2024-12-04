@@ -67,14 +67,15 @@ This is it! Here is our final Project!
 #### Milestone 2 (due 11/25)
 - Sky details and cloud - Jinxiang Wang
 - Foliage - Jinxiang Wang
-- Rain Effect - Jichu Mao
-- Weather system - Jichu Mao
+- Rain effect - Jichu Mao
+- Rain-on-window effect -Jichu Mao
 - Sea shader - Zhiyi Zhou
 
 #### Milestone 3 (due 12/2)
 - Post process - Jinxiang Wang
-- Final scene integration and setup  - Jichu Mao
+- Weather system - Jichu Mao
 - Shader effect polish - Jichu Mao
+- Final scene integration and setup  - Zhiyi Zhou
 - Scene props - Zhiyi Zhou
 
 ### Milestone 1
@@ -102,26 +103,59 @@ Basic water Shader. I use sin wave to change the position of water plane and use
 ### Milestone 2
 
 #### Jichu Mao
-- Implementation of a rain effect shader
 
-- Implementation of a rain-on-window effect shader
+In milestone 2, I finished rain shader , Rainy Window Shader, and basic weather system by Amplify Shader Editor.
 
-- Initial implementation of a weather system
+##### Implementation of a rain effect shader
+
+| Rain Shader|
+|:--:|
+|<img src="./img/rainy1.gif" width=700> |
+
+
+*Dynamic Raindrop Generation and Motion*
+
+The shader achieves realistic raindrop motion by leveraging dynamic UV transformations and time-based adjustments.
+ Two `Texture 2D` nodes supply distinct raindrop textures, which are moved using `Panner` nodes with UV offsets driven by the `Time` node.
+  This setup simulates continuous rainfall. To enhance complexity, the shader blends these layers using an `Add` node to overlay textures,
+   representing raindrops at varying depths. The randomness of raindrop distribution is enhanced by applying operations like Apower and `Divide` on UV coordinates,
+    introducing non-linear transformations for more natural effects. Additionally, `Register Local Var` ensures optimized data reuse, avoiding redundant computations and improving performance.
+
+ *Masking and Edge Control for Realism*
+
+A radial gradient mask generated through the `Distance` node defines the region where raindrops are rendered. This mask is refined using a Power node to control the softness of transitions at the edges. A `One Minus` node inverts the mask for seamless integration with the texture's alpha channel. The resulting values modulate the `Opacity` output, ensuring raindrops fade out gradually towards the boundaries. The final `Base Color` integrates blended raindrop textures with the mask for a cohesive effect. This masking strategy not only enhances realism but also optimizes rendering by focusing computations on relevant areas.
+
+##### Implementation of a rain-on-window effect shader
+
+
+The shader creates the illusion of rain sliding down a window by simulating individual raindrops with layered procedural techniques. Each raindrop is generated using procedural noise and smoothly moves downward over time, with slight oscillations to replicate the natural randomness of water droplets. Multiple layers of rain are implemented at different scales and speeds, creating depth and enhancing the sense of realism. The trails left behind by droplets are carefully blended into the scene, resembling the streaks of water that naturally form as rain flows across a surface. This layering approach provides a rich visual effect, as droplets interact dynamically with the environment.
+
+| Rain-on-window Effect|
+|:--:|
+|<img src="./img/rainyWindow.gif" width=700> |
+
+
+In addition to simulating rain motion, the shader incorporates screen-space effects to create a more immersive visual experience. As droplets flow, they distort the background, mimicking the optical effects seen when looking through water. The shader dynamically adjusts focus and blur to enhance this distortion, adding depth-of-field effects that respond to the proximity of the droplets. Post-processing techniques, such as vignetting and subtle color shifts, are applied to integrate the rain effect naturally into the scene. Together, these elements create a cohesive and realistic simulation of rain sliding down a glass surface, enhancing the atmospheric quality of the visual presentation.
 
 #### Zhiyi Zhou
 Improve the sea shader, add foam effect to the edges.
+
 <img src="./img/Zhiyi/waterShader.png" width=300> 
+
 <img src="./img/Zhiyi/waterFoam.png" width=300> 
 
 
 ### Milestone 3
 
 #### Jichu Mao
-- Integration of teammates' basic implementations and design, assembly, and setup of the final scene
 
-- Polishing the scene's weather system
+- Weather system
 
-- Adding sound effects for weather transitions
+I integrates multiple rain-related shaders into the final scene, creating a weather control system. The system allows switching between different sets of scene objects using a simple input, such as pressing the spacebar, to simulate varying weather conditions. This setup provides flexibility for testing and adjusting weather effects. In this milestone, I finally implemented the weather system switching functionality. For example, when the weather switches to rain, there are sound effects of thunder and rain, and these sound effects start or stop with the weather change.
+
+- Shader effect polish - Jichu Mao
+
+For polishing the shader effects, I customized various shader materials for the final scene, including day and night versions. Considering the final presentation effect at night, I adjusted shader parameters and added more parameter controls to the rain shader, allowing users to switch between different rain volumes and rain speeds for more convenient use.
 
 #### Zhiyi Zhou
 - Design and set up final scene.
@@ -129,6 +163,8 @@ Improve the sea shader, add foam effect to the edges.
 
 
 ## References
-- [Creating a Sand Shader](https://www.youtube.com/watch?v=KqWfo6EPjCw&t=947s)
+- [Sand Shader](https://www.youtube.com/watch?v=KqWfo6EPjCw&t=947s)
 - [Unity | Raindrops Shader](https://www.youtube.com/watch?v=dQSLjsDAzw0)
 - [Making a rainy winodw in Unity](https://www.youtube.com/watch?v=EBrAdahFtuo)
+
+
