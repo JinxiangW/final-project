@@ -225,6 +225,14 @@ For polishing the shader effects, I customized various shader materials for the 
 -   Add post processing
 -   Create a terrain using terrain tool
 
+## Post Mortem
+
+Our project has largely achieved its initial goals, including the creation of dynamic scene-like posters, akin to the dynamic wallpapers seen in software like Wallpaper Engine. This accomplishment reflects one of our primary objectives, and we believe we have come very close to fully realizing our vision.
+
+During the development process, we frequently adjusted our approach as we explored what was feasible. While we had a reference image to guide us, we faced uncertainties about our capabilities and thus relied on extensive online research to enhance our skills. A significant portion of our efforts was dedicated to unifying different models and shaders, as well as fine-tuning shader parameters, to produce a consistent and visually appealing outcome.
+
+Through this journey, we gained valuable experience in iterative planning and harmonizing visual elements to achieve a unified style. Looking ahead, we aspire to refine this tool further and eventually upload it to the Wallpaper Engine library, making it accessible for others to enjoy.
+
 ## References
 
 -   [Anime style clouds and starry nightsky in blender](https://www.youtube.com/watch?v=m4aOZm6auxQ)
