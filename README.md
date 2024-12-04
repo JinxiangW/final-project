@@ -2,6 +2,13 @@
 
 This is it! Here is our final Project!
 
+## Highlight
+
+
+https://github.com/user-attachments/assets/e68278bf-0364-47d8-9f1d-f03cffab7d8e
+
+
+
 ## Design Doc
 
 ### Introduction
