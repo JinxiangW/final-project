@@ -133,7 +133,8 @@ In milestone 2, I finished rain shader , Rainy Window Shader, and basic weather 
 
 |              Rain Shader               |
 | :------------------------------------: |
-| <img src="./img/rainy1.gif" width=700> |
+| <img src="./img/rainy.jpg" width=700> |
+| <img src="./img/rainy0.jpg" width=700> |
 
 _Dynamic Raindrop Generation and Motion_
 
@@ -146,6 +147,10 @@ introducing non-linear transformations for more natural effects. Additionally, `
 _Masking and Edge Control for Realism_
 
 A radial gradient mask generated through the `Distance` node defines the region where raindrops are rendered. This mask is refined using a Power node to control the softness of transitions at the edges. A `One Minus` node inverts the mask for seamless integration with the texture's alpha channel. The resulting values modulate the `Opacity` output, ensuring raindrops fade out gradually towards the boundaries. The final `Base Color` integrates blended raindrop textures with the mask for a cohesive effect. This masking strategy not only enhances realism but also optimizes rendering by focusing computations on relevant areas.
+
+|              Rain Effect               |
+| :------------------------------------: |
+| <img src="./img/rainy1.gif" width=700> |
 
 ##### Implementation of a rain-on-window effect shader
 
@@ -161,13 +166,14 @@ In addition to simulating rain motion, the shader incorporates screen-space effe
 
 Improve the sea shader, add foam effect to the edges.
 
-<img src="./img/Zhiyi/waterShader.png" width=300>
+<img src="./img/Zhiyi/waterShader.png" width=600>
 
-<img src="./img/Zhiyi/waterFoam.png" width=300>
+<img src="./img/Zhiyi/waterFoam.png" width=600>
 
 Improve the sea shader, add foam effect to the edges.
-<img src="./img/Zhiyi/waterShader.png" width=300>
-<img src="./img/Zhiyi/waterFoam.png" width=300>
+
+<img src="./img/Zhiyi/waterShader.png" width=700>
+<img src="./img/Zhiyi/waterFoam.png" width=700>
 
 #### Jinxiang Wang
 
