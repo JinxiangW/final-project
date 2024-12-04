@@ -92,6 +92,12 @@ In the milestone 1, I implemented a height map based on Perlin noise and Voronoi
 |<img src="./img/m1_3.jpeg" width=500> |
 |<img src="./img/m1_4.jpg" width=500> |
 
+#### Zhiyi Zhou
+Basic water Shader. I use sin wave to change the position of water plane and use a normal map to disturb the normals of the water surface.
+
+
+<img src="./img/Zhiyi/water1.png" width=300> 
+<img src="./img/Zhiyi/water2.png" width=300> 
 
 ### Milestone 2
 
@@ -102,6 +108,12 @@ In the milestone 1, I implemented a height map based on Perlin noise and Voronoi
 
 - Initial implementation of a weather system
 
+#### Zhiyi Zhou
+Improve the sea shader, add foam effect to the edges.
+<img src="./img/Zhiyi/waterShader.png" width=300> 
+<img src="./img/Zhiyi/waterFoam.png" width=300> 
+
+
 ### Milestone 3
 
 #### Jichu Mao
@@ -111,7 +123,9 @@ In the milestone 1, I implemented a height map based on Perlin noise and Voronoi
 
 - Adding sound effects for weather transitions
 
-
+#### Zhiyi Zhou
+- Design and set up final scene.
+- Enhance the cloud performance.
 
 
 ## References
