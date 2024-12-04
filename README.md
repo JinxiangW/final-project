@@ -163,8 +163,15 @@ For polishing the shader effects, I customized various shader materials for the 
 
 
 ## References
-- [Sand Shader](https://www.youtube.com/watch?v=KqWfo6EPjCw&t=947s)
+- [Anime style clouds and starry nightsky in blender](https://www.youtube.com/watch?v=m4aOZm6auxQ)
+- [Sunset Cliffs](https://www.youtube.com/watch?v=Ad0okjU-SBA)
+- [Wave animation anime npr -blender](https://www.youtube.com/watch?v=cqZh4Nvum6A)
+- [Amplify Shader Editor](https://amplify.pt/unity/amplify-shader-editor/)
+- [Sand Shader - Advanced Materials](https://www.youtube.com/watch?v=NDb4WpE5bak)
+- [Tutrorial for Sand Shader](https://www.youtube.com/watch?v=KqWfo6EPjCw&t=947s)
 - [Unity | Raindrops Shader](https://www.youtube.com/watch?v=dQSLjsDAzw0)
+- [A rain Shader](https://www.youtube.com/watch?v=-SeGSp0odqs)
 - [Making a rainy winodw in Unity](https://www.youtube.com/watch?v=EBrAdahFtuo)
+- [Creating a Dynamic Real-Time Weather System in Unity - Water Shading, Puddles & Rain Effects](https://www.youtube.com/watch?v=SYKG3OQRJig&t=248s)
 
 
